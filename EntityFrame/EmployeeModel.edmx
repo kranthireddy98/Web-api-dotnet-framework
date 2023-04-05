@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EmployeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AGENTS">
+          <Key>
+            <PropertyRef Name="AGENT_CODE" />
+          </Key>
+          <Property Name="AGENT_CODE" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="AGENT_NAME" Type="char" MaxLength="40" />
+          <Property Name="WORKING_AREA" Type="char" MaxLength="35" />
+          <Property Name="COMMISSION" Type="float" />
+          <Property Name="PHONE_NO" Type="char" MaxLength="15" />
+          <Property Name="COUNTRY" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUST_CODE" />
+          </Key>
+          <Property Name="CUST_CODE" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="CUST_NAME" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CUST_CITY" Type="char" MaxLength="35" />
+          <Property Name="WORKING_AREA" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="CUST_COUNTRY" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="GRADE" Type="int" />
+          <Property Name="OPENING_AMT" Type="int" Nullable="false" />
+          <Property Name="RECEIVE_AMT" Type="int" Nullable="false" />
+          <Property Name="PAYMENT_AMT" Type="int" Nullable="false" />
+          <Property Name="OUTSTANDING_AMT" Type="int" Nullable="false" />
+          <Property Name="PHONE_NO" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="AGENT_CODE" Type="char" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMER1">
+          <Key>
+            <PropertyRef Name="CUST_CODE" />
+          </Key>
+          <Property Name="CUST_CODE" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="CUST_NAME" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CUST_CITY" Type="char" MaxLength="35" />
+          <Property Name="WORKING_AREA" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="CUST_COUNTRY" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="GRADE" Type="float" />
+          <Property Name="OPENING_AMT" Type="float" Nullable="false" />
+          <Property Name="RECEIVE_AMT" Type="float" Nullable="false" />
+          <Property Name="PAYMENT_AMT" Type="float" Nullable="false" />
+          <Property Name="OUTSTANDING_AMT" Type="float" Nullable="false" />
+          <Property Name="PHONE_NO" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="AGENT_CODE" Type="char" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salary" Type="int" />
+        </EntityType>
+        <Association Name="FK__CUSTOMER__AGENT___3B75D760">
+          <End Role="AGENTS" Type="Self.AGENTS" Multiplicity="1" />
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENTS">
+              <PropertyRef Name="AGENT_CODE" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="AGENT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CUSTOMER1__AGENT__3E52440B">
+          <End Role="AGENTS" Type="Self.AGENTS" Multiplicity="1" />
+          <End Role="CUSTOMER1" Type="Self.CUSTOMER1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENTS">
+              <PropertyRef Name="AGENT_CODE" />
+            </Principal>
+            <Dependent Role="CUSTOMER1">
+              <PropertyRef Name="AGENT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmployeeDBModelStoreContainer">
+          <EntitySet Name="AGENTS" EntityType="Self.AGENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER1" EntityType="Self.CUSTOMER1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CUSTOMER__AGENT___3B75D760" Association="Self.FK__CUSTOMER__AGENT___3B75D760">
+            <End Role="AGENTS" EntitySet="AGENTS" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CUSTOMER1__AGENT__3E52440B" Association="Self.FK__CUSTOMER1__AGENT__3E52440B">
+            <End Role="AGENTS" EntitySet="AGENTS" />
+            <End Role="CUSTOMER1" EntitySet="CUSTOMER1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmployeeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AGENT">
+          <Key>
+            <PropertyRef Name="AGENT_CODE" />
+          </Key>
+          <Property Name="AGENT_CODE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AGENT_NAME" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="WORKING_AREA" Type="String" MaxLength="35" FixedLength="true" Unicode="false" />
+          <Property Name="COMMISSION" Type="Double" />
+          <Property Name="PHONE_NO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUSTOMERs" Relationship="Self.FK__CUSTOMER__AGENT___3B75D760" FromRole="AGENTS" ToRole="CUSTOMER" />
+          <NavigationProperty Name="CUSTOMER1" Relationship="Self.FK__CUSTOMER1__AGENT__3E52440B" FromRole="AGENTS" ToRole="CUSTOMER1" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUST_CODE" />
+          </Key>
+          <Property Name="CUST_CODE" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUST_NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUST_CITY" Type="String" MaxLength="35" FixedLength="true" Unicode="false" />
+          <Property Name="WORKING_AREA" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUST_COUNTRY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GRADE" Type="Int32" />
+          <Property Name="OPENING_AMT" Type="Int32" Nullable="false" />
+          <Property Name="RECEIVE_AMT" Type="Int32" Nullable="false" />
+          <Property Name="PAYMENT_AMT" Type="Int32" Nullable="false" />
+          <Property Name="OUTSTANDING_AMT" Type="Int32" Nullable="false" />
+          <Property Name="PHONE_NO" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AGENT_CODE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AGENT" Relationship="Self.FK__CUSTOMER__AGENT___3B75D760" FromRole="CUSTOMER" ToRole="AGENTS" />
+        </EntityType>
+        <EntityType Name="CUSTOMER1">
+          <Key>
+            <PropertyRef Name="CUST_CODE" />
+          </Key>
+          <Property Name="CUST_CODE" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUST_NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUST_CITY" Type="String" MaxLength="35" FixedLength="true" Unicode="false" />
+          <Property Name="WORKING_AREA" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUST_COUNTRY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GRADE" Type="Double" />
+          <Property Name="OPENING_AMT" Type="Double" Nullable="false" />
+          <Property Name="RECEIVE_AMT" Type="Double" Nullable="false" />
+          <Property Name="PAYMENT_AMT" Type="Double" Nullable="false" />
+          <Property Name="OUTSTANDING_AMT" Type="Double" Nullable="false" />
+          <Property Name="PHONE_NO" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AGENT_CODE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AGENT" Relationship="Self.FK__CUSTOMER1__AGENT__3E52440B" FromRole="CUSTOMER1" ToRole="AGENTS" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__CUSTOMER__AGENT___3B75D760">
+          <End Role="AGENTS" Type="Self.AGENT" Multiplicity="1" />
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENTS">
+              <PropertyRef Name="AGENT_CODE" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="AGENT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CUSTOMER1__AGENT__3E52440B">
+          <End Role="AGENTS" Type="Self.AGENT" Multiplicity="1" />
+          <End Role="CUSTOMER1" Type="Self.CUSTOMER1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENTS">
+              <PropertyRef Name="AGENT_CODE" />
+            </Principal>
+            <Dependent Role="CUSTOMER1">
+              <PropertyRef Name="AGENT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmployeeDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AGENTS" EntityType="Self.AGENT" />
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="CUSTOMER1" EntityType="Self.CUSTOMER1" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <AssociationSet Name="FK__CUSTOMER__AGENT___3B75D760" Association="Self.FK__CUSTOMER__AGENT___3B75D760">
+            <End Role="AGENTS" EntitySet="AGENTS" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CUSTOMER1__AGENT__3E52440B" Association="Self.FK__CUSTOMER1__AGENT__3E52440B">
+            <End Role="AGENTS" EntitySet="AGENTS" />
+            <End Role="CUSTOMER1" EntitySet="CUSTOMER1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmployeeDBModelStoreContainer" CdmEntityContainer="EmployeeDBEntities">
+          <EntitySetMapping Name="AGENTS">
+            <EntityTypeMapping TypeName="EmployeeDBModel.AGENT">
+              <MappingFragment StoreEntitySet="AGENTS">
+                <ScalarProperty Name="AGENT_CODE" ColumnName="AGENT_CODE" />
+                <ScalarProperty Name="AGENT_NAME" ColumnName="AGENT_NAME" />
+                <ScalarProperty Name="WORKING_AREA" ColumnName="WORKING_AREA" />
+                <ScalarProperty Name="COMMISSION" ColumnName="COMMISSION" />
+                <ScalarProperty Name="PHONE_NO" ColumnName="PHONE_NO" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="EmployeeDBModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="CUST_CODE" ColumnName="CUST_CODE" />
+                <ScalarProperty Name="CUST_NAME" ColumnName="CUST_NAME" />
+                <ScalarProperty Name="CUST_CITY" ColumnName="CUST_CITY" />
+                <ScalarProperty Name="WORKING_AREA" ColumnName="WORKING_AREA" />
+                <ScalarProperty Name="CUST_COUNTRY" ColumnName="CUST_COUNTRY" />
+                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+                <ScalarProperty Name="OPENING_AMT" ColumnName="OPENING_AMT" />
+                <ScalarProperty Name="RECEIVE_AMT" ColumnName="RECEIVE_AMT" />
+                <ScalarProperty Name="PAYMENT_AMT" ColumnName="PAYMENT_AMT" />
+                <ScalarProperty Name="OUTSTANDING_AMT" ColumnName="OUTSTANDING_AMT" />
+                <ScalarProperty Name="PHONE_NO" ColumnName="PHONE_NO" />
+                <ScalarProperty Name="AGENT_CODE" ColumnName="AGENT_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMER1">
+            <EntityTypeMapping TypeName="EmployeeDBModel.CUSTOMER1">
+              <MappingFragment StoreEntitySet="CUSTOMER1">
+                <ScalarProperty Name="CUST_CODE" ColumnName="CUST_CODE" />
+                <ScalarProperty Name="CUST_NAME" ColumnName="CUST_NAME" />
+                <ScalarProperty Name="CUST_CITY" ColumnName="CUST_CITY" />
+                <ScalarProperty Name="WORKING_AREA" ColumnName="WORKING_AREA" />
+                <ScalarProperty Name="CUST_COUNTRY" ColumnName="CUST_COUNTRY" />
+                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+                <ScalarProperty Name="OPENING_AMT" ColumnName="OPENING_AMT" />
+                <ScalarProperty Name="RECEIVE_AMT" ColumnName="RECEIVE_AMT" />
+                <ScalarProperty Name="PAYMENT_AMT" ColumnName="PAYMENT_AMT" />
+                <ScalarProperty Name="OUTSTANDING_AMT" ColumnName="OUTSTANDING_AMT" />
+                <ScalarProperty Name="PHONE_NO" ColumnName="PHONE_NO" />
+                <ScalarProperty Name="AGENT_CODE" ColumnName="AGENT_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="EmployeeDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
