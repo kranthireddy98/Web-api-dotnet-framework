@@ -101,7 +101,7 @@ namespace WebApi2.Controllers
             }
         }
 
-        public HttpResponseMessage Put(int id, [FromBody]Employee employee)
+         public HttpResponseMessage Put(int id, [FromBody] Employee employee)
         {
 
             using (EmployeeDBEntities context = new EmployeeDBEntities())
@@ -130,5 +130,37 @@ namespace WebApi2.Controllers
                 }
             }
         }
+        public HttpResponseMessage Put([FromUri] string name, [FromBody] Employee employee)
+        {
+
+            using (EmployeeDBEntities context = new EmployeeDBEntities())
+            {
+                var entity = context.Employees.FirstOrDefault(e =>
+                e.LastName == name);
+                try
+                {
+                    if (entity == null)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound,
+                            "Employee With id =" + name + " not found");
+                    }
+                    else
+                    {
+                        entity.FirstName = employee.FirstName;
+                        entity.LastName = employee.LastName;
+                        entity.Gender = employee.Gender;
+                        entity.Salary = employee.Salary;
+                        context.SaveChanges();
+                        return Request.CreateResponse(HttpStatusCode.OK, employee);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                }
+            }
+        }
+
+
     }
 }
