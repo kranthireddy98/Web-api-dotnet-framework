@@ -38,7 +38,7 @@ namespace WebApi2
 
             //config.Formatters.Add(new CustomJsonFormatter());
 
-            //config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
            // config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new
               //  System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
             //config.Formatters.JsonFormatter.SerializerSettings.Formatting =

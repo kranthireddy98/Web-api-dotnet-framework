@@ -19,5 +19,6 @@ namespace EntityFrame
         public string LastName { get; set; }
         public string Gender { get; set; }
         public Nullable<int> Salary { get; set; }
+        public string email { get; set; }
     }
 }

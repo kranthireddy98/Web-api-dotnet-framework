@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Web.Http;
+using System.Web.Mvc;
 using EntityFrame;
 namespace WebApi2.Controllers
 {
@@ -51,27 +52,41 @@ namespace WebApi2.Controllers
             }
         }
 
-        public HttpResponseMessage Post([FromBody] Employee employee) {
+        //public HttpResponseMessage Post([FromBody] Employee employee) {
 
-            try {
-                using (var context = new EmployeeDBEntities())
-                {
-                    context.Employees.Add(employee);
-                    context.SaveChanges();
+        //    try {
+        //        using (var context = new EmployeeDBEntities())
+        //        {
+        //            context.Employees.Add(employee);
+        //            context.SaveChanges();
 
-                    var message = Request.CreateResponse(HttpStatusCode.Created, employee);
-                    message.Headers.Location = new Uri(Request.RequestUri + employee.ID.ToString());
-                    return message;
-                }
+        //            var message = Request.CreateResponse(HttpStatusCode.Created, employee);
+        //            message.Headers.Location = new Uri(Request.RequestUri + employee.ID.ToString());
+        //            return message;
+        //        }
+        //    }
+        //    catch (Exception ex){
+        //      return  Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+
+
+        //    }
+
+        //} 
+
+        public HttpResponseMessage Post([FromBody] Dictionary<string, string> data)
+        {
+            try
+            {  // Process the data here
+                EmployeeDBEntities context = new EmployeeDBEntities();
+                var result1 = context.Employees;
+                return Request.CreateResponse(HttpStatusCode.OK, result1);
+                //return Request.CreateResponse(HttpStatusCode.Created, result);
             }
-            catch (Exception ex){
-              return  Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-
-
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
-           
-        } 
-
+        }
         public HttpResponseMessage Delete(int id)
         {
             using(EmployeeDBEntities context = new EmployeeDBEntities())
